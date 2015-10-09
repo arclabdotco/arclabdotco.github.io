@@ -27,6 +27,11 @@ p {
 	margin:0;
 	}
 
+a {
+	text-decoration:none;
+	cursor:cell;
+	}
+
 #wrapper {
 }
 
@@ -34,12 +39,6 @@ p {
 	position:absolute;
 	top:40%;
 	width:100%;
-	font-size:19px;
-	letter-spacing:1px;
 	line-height:1.8em;
 	text-align:center;
-	}
-
-.arc {
-	font-size:30px;
 	}
