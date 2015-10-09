@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% if page.title %}
+			{{ site.name }}&nbsp;/&nbsp;{{ page.title }}
+		{% else %}
+			{{ site.name }}
+		{% endif %}
+	</title>
+	<meta name='description' content='{{ page.description }}'>
+	
+	<link rel='icon' href='/favicon.ico' />
+	<link rel='stylesheet' type='text/css' href='/css/style.css' />
+
+	<!--<script type='text/javascript' src='/js/libs/jquery-2.0.3.min.js'></script>
+	<script type='text/javascript' src='/js/libs/d3.v2.min.js'></script>-->
+</head>
+<body>
+	<div id='wrapper'>
