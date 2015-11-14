@@ -16,7 +16,6 @@ body {
 	color:$color-black; 
 	font-family:'Arial',sans-serif;
 	font-size:11px;
-	line-height:1.4em;
 	margin:0 auto; 
 	padding:0 auto; 
 	text-rendering:optimizeLegibility;
@@ -30,14 +29,10 @@ p {
 
 a {
 	color:$color-accent;
-	text-decoration:none;
-	border-bottom:1px solid $color-accent;
+	text-decoration:underline;
 	cursor:cell;
 	}
 a:hover {
-	/*background:blue;
-	color:white;*/
-	/*border-bottom:1px solid blue;*/
 	}
 
 #wrapper {
@@ -57,6 +52,23 @@ a:hover {
 	}
 
 .content {
+	display:inline-block;
 	font-style:italic;
 	margin:15px;
+	}
+
+/*	Alpha Index 	-------------------------- */
+
+.content.page_files {
+	font-style:normal;
+	}
+
+ul.alphaIndex {
+	list-style-type:none;
+	margin:0;
+	padding:15px 0 0 0;
+	}
+
+ul.alphaIndex li.alphaItems:first-child {
+	padding-top:15px;
 	}

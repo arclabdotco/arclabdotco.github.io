@@ -1,0 +1,21 @@
+{% include header.html %}
+<div class='content page_files'>
+</div>
+<script>
+var FILES_ARRAY = [];
+{% for f in site.data.files %}
+	var TAGS_LIST = [];
+	{% for t in f.tags %}
+		TAGS_LIST.push("{{ t }}");
+	{% endfor %}
+	FILES_ARRAY.push({
+		id: 	"{{ f.id }}",
+		name: 	"{{ f.name }}",
+		date: 	"{{ f.date }}",
+		path: 	"{{ f.path }}",
+		tags: 	TAGS_LIST
+	});
+{% endfor %}
+</script>
+<script type='text/javascript' src='/js/files.js'></script>
+{% include footer.html %}

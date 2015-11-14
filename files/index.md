@@ -1,4 +1,4 @@
 ---
-layout: default
+layout: page_files
 title:  "Files"
 ---
