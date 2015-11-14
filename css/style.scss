@@ -50,6 +50,13 @@ a:hover {
 .arc {
 	margin-left:60px;
 	}
+.arc a {
+	color:$color-black;
+	text-decoration:none;
+	}
+.arc a:hover {
+	text-decoration:underline;
+	}
 
 .content {
 	display:inline-block;
@@ -67,6 +74,9 @@ ul.alphaIndex {
 	list-style-type:none;
 	margin:0;
 	padding:15px 0 0 0;
+	}
+ul.alphaIndex:first-child {
+	padding:0;
 	}
 
 ul.alphaIndex li.alphaItems:first-child {
