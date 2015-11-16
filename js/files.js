@@ -16,6 +16,9 @@ var schema = function(){
 				return 0;
 			});
 
+			//filter out unpublished items
+			self.files = self.files.filter(function(d){ return d.published !== 'false'; });
+
 			//separate out relevant letters
 			var alphaDisplay = [],
 				alphaHolder  = {};

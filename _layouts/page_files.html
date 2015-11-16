@@ -9,10 +9,11 @@ var FILES_ARRAY = [];
 		TAGS_LIST.push("{{ t }}");
 	{% endfor %}
 	FILES_ARRAY.push({
-		id: 	"{{ f.id }}",
-		name: 	"{{ f.name }}",
-		date: 	"{{ f.date }}",
-		path: 	"{{ f.path }}",
+		id: 		"{{ f.id }}",
+		name: 		"{{ f.name }}",
+		date: 		"{{ f.date }}",
+		path: 		"{{ f.path }}",
+		published: 	"{{ f.published }}",
 		tags: 	TAGS_LIST
 	});
 {% endfor %}
