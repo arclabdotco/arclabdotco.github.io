@@ -1,4 +1,0 @@
-[submodule "files/A2015001"]
-	path = files/A2015001
-	url = https://github.com/arclabdotco/A2015001.git
-	ignore = dirty
