@@ -1,7 +1,66 @@
 {% include header.html %}
+<div id='bknd'></div>
 <div class='content'>
 	{{ content }}
 </div>
-<div id='bknd'></div>
-<script type='text/javascript' src='/js/index.js'></script>
+<script id='vertexShader' type='x-shader/x-vertex'>
+    void main(){
+        gl_Position = vec4(position,1.0);
+    }
+</script>
+<script id='fragmentShader' type='x-shader/x-fragment'>
+
+	// Randomness adapted from code written by @patriciogv - 2015
+	// http://patriciogonzalezvivo.com/2015/thebookofshaders/edit.html#11/circleWave-noise.frag
+
+	#ifdef GL_ES
+	precision mediump float;
+	#endif
+
+    uniform vec2 u_resolution;
+    uniform float u_time;
+
+	vec2 random2(vec2 st){
+	    st = vec2(  dot(st,vec2(127.1,311.7)),
+	                dot(st,vec2(269.5,183.3))   );
+	    return -1.0 +2.0*fract(sin(st)*43758.5453123);
+	}
+
+	// Value Noise by Inigo Quilez - 2013
+	// https://www.shadertoy.com/view/lsf3WH
+	float noise(vec2 st){
+	    vec2 i = floor(st);
+	    vec2 f = fract(st);
+	    
+	    vec2 u = f*f*(3.0-2.0*f);
+	    
+	    return mix( mix( dot( random2(i + vec2(0.0,0.0) ), f - vec2(0.0,0.0) ),
+	                     dot( random2(i + vec2(1.0,0.0) ), f - vec2(1.0,0.0) ), u.x),
+	                mix( dot( random2(i + vec2(0.0,1.0) ), f - vec2(0.0,1.0) ),
+	                     dot( random2(i + vec2(1.0,1.0) ), f - vec2(1.0,1.0) ), u.x), u.y);
+	}
+
+	//store PI variable
+	float PI = 3.14;
+
+    void main(){
+
+        vec2 px = gl_FragCoord.xy/u_resolution.xy;
+
+        float mid = 0.025*sin(px.x*15.0 +u_time/2.0) +0.525;
+        
+        float n = noise(vec2(px.x +u_time/8.0))/2.0;
+
+        float y = px.y +n;
+        float dif = abs(0.01 -n);
+
+        float p = smoothstep((mid -dif),(mid +dif),y);
+
+        vec3 color = vec3(1.0,0.6666,0.0);
+
+        gl_FragColor = vec4((vec3(1.0) -p*color),1.0);
+    }
+
+</script>
+<script src='js/index.js'></script>
 {% include footer.html %}

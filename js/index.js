@@ -1,119 +1,64 @@
-var schema = function(){
+var container;
+var camera, scene, renderer;
+var uniforms;
 
-	return {
+init();
+animate();
 
-		p5:null,
+var w, h;
 
-		w:window.innerWidth,
-		h:window.innerHeight,
+function init(){
+    container = document.getElementById('bknd');
 
-		color_accent:{
-			r:0,
-			g:85,
-			b:255
-		},
+    w = window.innerWidth;
+    h = window.innerHeight;
 
-		generate:function(){
-			var self = view;
+    camera = new THREE.Camera();
+    camera.position.z = 1;
 
-			self.p5 = new p5(self.sketch);
-		},
-		sketch:function(p){
-			var self = view;
+    scene = new THREE.Scene();
 
-			var yoff = 1.0;
+    var geometry = new THREE.PlaneBufferGeometry(2,2);
+    //var geometry = new THREE.BoxGeometry(1,1,1);
 
-			var nA = 0;
-			var sc = 1.0;
-			var h1;
+    uniforms = {
+        u_time: { type:'f', value:1.0 },
+        u_resolution: { type:'v2', value: new THREE.Vector2() }
+    };
 
-			//how far apart each horizontal location on the sinewave should be spaced
-			var xspacing = 1;
+    var material = new THREE.ShaderMaterial({
+        uniforms:uniforms,
+        vertexShader:document.getElementById('vertexShader').textContent,
+        fragmentShader:document.getElementById('fragmentShader').textContent
+    });
 
-			//width of entire sinewave
-			var w;
+    var mesh = new THREE.Mesh(geometry,material);
+    scene.add(mesh);
 
-			//sinewave
-			var theta = 0.0;	//start at 0
-			var amplitude;		//height of wave
-			var period;			//how many pixels before the wave repeats
-			var dx;				//value for incrementing x, a function of period and xspacing
-			var yvalues = [];	//using an array to store height values for the wave
+    renderer = new THREE.WebGLRenderer();
+    renderer.setPixelRatio(window.devicePixelRatio);
 
-			p.setup = function(){
-				
-				var c = p.createCanvas(self.w,self.h);
-				c.parent('bknd');
+    container.appendChild(renderer.domElement);
 
-				p.background(self.color_accent.r,self.color_accent.g,self.color_accent.b);
-
-				p.noStroke();
-				p.smooth();
-
-				theta = 0.0;
-				amplitude = p.width/90;
-				period = p.width;
-
-				//sinewave
-				w = p.width;
-				dx = (p.TWO_PI/period)*xspacing;
-
-				d3.range(0,p.width).forEach(function(d){
-					yvalues.push(d);
-				});
-
-				h1 = 15;
-			}
-
-			p.draw = function(){
-
-				var pFactor = 40;//p.height/10;
-				var opacity = 2;
-
-				p.fill(self.color_accent.r,self.color_accent.g,self.color_accent.b,15);
-				p.rect(0,0,p.width,p.height);
-
-				//sinewave
-				p.calcWave();
-
-				var xoff = 0;
-
-				//iterate over horizontal pixels
-				for(var i=0; i<p.width; i++){
-					var y = p.map(p.noise(xoff, yoff), 0, 1, p.height/2-h1*pFactor, p.height/2+h1*pFactor);
-
-					//add sinewave
-					y +=yvalues[i];
-
-					p.fill(255,y/opacity);
-
-					//draw rects
-					p.rect(i,y,1,p.height);
-
-					//increment x-dimension for noise
-					xoff += 0.003;
-				}
-
-  				xoff = 0;
-
-			}
-
-			p.calcWave = function(){
-				
-				//increment theta
-				theta += 0.06;
-
-				//for every x-value, calculate a y-value with sine function
-				var x = theta;
-
-				for(var i=0; i<yvalues.length; i++){
-					yvalues[i] = p.sin(x)*amplitude;
-					x +=dx;
-				}
-			}
-		}
-	}
+    onWindowResize();
+    window.addEventListener('resize',onWindowResize,false);
 }
 
-var view = schema();
-view.generate();
+function onWindowResize(event){
+	w = window.innerWidth;
+	h = window.innerHeight;
+
+    renderer.setSize(w,h);
+    uniforms.u_resolution.value.x = renderer.domElement.width;
+    uniforms.u_resolution.value.y = renderer.domElement.height;
+}
+
+function animate(){
+    requestAnimationFrame(animate);
+    render();
+}
+
+function render(){
+    uniforms.u_time.value += 0.05;
+    renderer.render(scene,camera);
+}

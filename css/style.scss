@@ -48,7 +48,7 @@ a:hover {
 	margin:15px;
 	}
 
-/*	ELEM - Social 	-------------------------- */
+/*	Social 			-------------------------- */
 
 #social {
 	display:inline-block;
@@ -70,26 +70,39 @@ a:hover {
 
 /*	PAGE — Home 	-------------------------- */
 
+.home #bknd {
+	position:absolute;
+	background:$color-accent;
+	}
+
+.home canvas {
+	position:absolute;
+	}
+
 .home .content {
 	position:absolute;
-	/*background:$color-accent;*/
+	background:transparent;
 	width:100%;
 	height:100%;
 	margin:0 auto;
 	padding:0;
+	border:30px solid white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 	}
 
 .home .content p {
 	position:absolute;
 	color:#fff;
 	width:100%;
-	font-size:90px;
+	font-size:150px;
 	font-family:'Times',serif;
 	font-weight:bold;
 	font-style:normal;
 	text-align:center;
 	letter-spacing:-2px;
-	top:40%;
+	top:15%;
 	}
 
 /*	PAGE — Files 	-------------------------- */
