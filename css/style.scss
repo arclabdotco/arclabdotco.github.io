@@ -92,7 +92,17 @@ a:hover {
     -webkit-box-sizing: border-box;
 	}
 
-.home .content p {
+.home #logo {
+	position:fixed;
+	background:url(../images/logo.svg) no-repeat center center;
+	width:420px;
+	height:140px;
+	margin-left:-210px;
+	left:50%;
+	top:18%;
+	}
+
+/*.home .content p {
 	position:absolute;
 	color:#fff;
 	width:100%;
@@ -101,9 +111,10 @@ a:hover {
 	font-weight:bold;
 	font-style:normal;
 	text-align:center;
+	text-rendering:geometricPrecision;
 	letter-spacing:-2px;
 	top:15%;
-	}
+	}*/
 
 .home #social {
 	position:absolute;
