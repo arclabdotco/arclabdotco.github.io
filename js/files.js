@@ -48,7 +48,7 @@ var schema = function(){
 			var alphaIndex,
 				alphaItems,
 				alphaLinks;
-			alphaIndex = d3.select('div.content.page_files')
+			alphaIndex = d3.select('div.content')
 				.selectAll('ul.alphaIndex')
 				.data(alphaDisplay);
 			alphaIndex.enter().append('ul')

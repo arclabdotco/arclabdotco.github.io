@@ -1,4 +1,5 @@
 ---
-layout: default
+layout: page_home
+title:  "Home"
 ---
-(under construction)
+Arc Lab
