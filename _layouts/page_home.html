@@ -48,7 +48,7 @@
 
         vec2 px = gl_FragCoord.xy/u_resolution.xy;
 
-        float mid = 0.025*sin(px.x*15.0 +u_time/2.0) +0.525;
+        float mid = 0.01*sin(px.x*12.0 +u_time/2.0) +0.75;
         
         float n = noise(vec2(px.x +u_time/8.0))/2.0;
 
