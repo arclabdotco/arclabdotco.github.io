@@ -86,23 +86,23 @@ a:hover {
 	height:100%;
 	margin:0 auto;
 	padding:0;
-	/*border:30px solid white;
+	border:30px solid $color-black;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;*/
+    -webkit-box-sizing: border-box;
 	}
 
 .home #logo {
 	position:fixed;
 	/*background:url(../images/logo.svg) no-repeat center center;*/
-	width:90px;
-	height:45px;
-	margin-left:-45px;
+	width:60px;
+	height:30px;
+	margin-left:-30px;
 	left:50%;
 	top:18%;
 	border:3px solid white;
-	border-top-left-radius:45px;
-	border-top-right-radius:45px;
+	border-top-left-radius:30px;
+	border-top-right-radius:30px;
 	border-bottom:0;
 	box-sizing: border-box;
     -moz-box-sizing: border-box;
